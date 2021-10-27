@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hendricks Weather</title>
+    <meta charset="UTF-8" />
+  
+    <link href="src/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+  </head>
+
+  <body>
+    <div class="title"> Guessing the Weather with Hendricks </div>
+   
+                <form id="search-form">
+                    <input
+                      type="text"
+                      placeholder="Enter a city"
+                      class="search-city-weather"
+                      autocomplete="off"
+                      autofocus="on"
+                      id="search-city-info"
+                    />
+                    <input type="submit" value="Search" class="search-button" />
+                    <button class="currentlocationbtn" id="current-location">
+                      Current Location
+                    </button>
+                  </form>   
+
+
+      <div class="currentWeather"> 
+                <h1 id="city"></h1> 
+                <h4 id="Date"></h4>
+                <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"  alt="partly cloudy" max-width=" 300px;"/>
+              
+                        
+          <ul id="weatherConditions">
+
+              <li id="temperature">
+                <span id="units">
+                  <a id="celsius-link" href="src/index.js">°C</a>
+                      <span id="divider">|</span>
+                      <a id="fahrenheit-link" href="src/index.js"> °F </a>
+                    </span>
+              </li>
+              <li id="temperature-description"></li>
+              <li id="wind-speed"><span>Wind: </span></li>   
+              
+          </ul>
+                      
+            
+                  <div class="weather-icon">
+                    <i class="fas fa-cloud-sun" ></i>
+                  </p>
+                  </div>
+
+             
+      </div>
+
+             
+      <span class="link-to-code">
+          <a href="#" target="_blank">Open-source code</a>
+    
+          by L Hendricks
+        </span>
+        
+    <script src="src/index.js"></script>
+  </body>
+</html>
