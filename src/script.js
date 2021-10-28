@@ -31,6 +31,7 @@ function search(event) {
 
   searchCity(cityInput.value);
 }
+searchCity("Glasgow");
 
 function searchCity(city) {
   let apiKey = "16fe8924e5a075000ef90dc44bff1cd0";
@@ -38,58 +39,68 @@ function searchCity(city) {
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
 }
 
-// Feature #1
 let dateElement = document.querySelector("#Date");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
 
-// Feature #2
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
+//let searchForm = document.querySelector("#search-form");
+//searchForm.addEventListener("submit", search);
 
 //geolocator current location
-function showPosition(position) {
-  let h1 = document.querySelector("h1");
-  h1.innerHTML = console.log(position.coords.latitude);
-  console.log(position.coords.longitude);
-}
+//function showPosition(position) {
+// let h1 = document.querySelector("h1");
+// h1.innerHTML = console.log(position.coords.latitude);
+// console.log(position.coords.longitude);
+//}
 
-function getCurrentPosition() {
-  navigator.geolocation.getCurrentPosition(showPosition);
-}
+//function getCurrentPosition() {
+// navigator.geolocation.getCurrentPosition(showPosition);
+//}
 
-let button = document.querySelector("button");
-button.addEventListener("click", getCurrentPosition);
+//let button = document.querySelector("button");
+//button.addEventListener("click", getCurrentPosition);
 
 function showTemperature(response) {
   console.log(response.data);
-  let temperature = Math.round(response.data.main.temp);
-  let temperatureElement = document.querySelector("#temperature");
-  let windElement = document.querySelector("#wind-speed");
-  let description = document.querySelector("#temperature-description");
+
   let cityElement = document.querySelector("#city");
+  let temperatureElement = document.querySelector("#temperature");
+  let windElement = document.querySelector("#wind");
+  let conditionElement = document.querySelector("#conditions");
+  let humidityElement = document.querySelector("#humidity");
 
-  function convertToFahrenheit(event) {
-    event.preventDefault();
-    let temperatureElement = document.querySelector("#temperature");
-    temperatureElement.innerHTML = `${temperature}`;
-  }
-
-  function convertToCelsius(event) {
-    event.preventDefault();
-    let temperatureElement = document.querySelector("#temperature");
-    temperatureElement.innerHTML = `${temperature}`;
-  }
-
-  let fahrenheitLink = document.querySelector("#fahrenheit-link");
-  fahrenheitLink.addEventListener("click", convertToFahrenheit);
-
-  let celsiusLink = document.querySelector("#celsius-link");
-  celsiusLink.addEventListener("click", convertToCelsius);
+  let iconElement = document.querySelector("#icon");
 
   cityElement.innerHTML = response.data.name;
-  temperatureElement.innerHTML = `${temperature}`;
-  description.innerHTML = response.data.weather[0].description;
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  conditionElement.innerHTML = response.data.weather[0].description;
+  humidityElement.innerHTML = response.data.main.humidity;
+
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute(
+    "alt",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].description}@2x.png`
+  );
 }
 
-searchCity("Glasgow");
+//function convertToFahrenheit(event) {
+//event.preventDefault();
+//let temperatureElement = document.querySelector("#temperature");
+// temperatureElement.innerHTML = `${temperature}`;
+//}
+
+//function convertToCelsius(event) {
+// event.preventDefault();
+// let temperatureElement = document.querySelector("#temperature");
+// temperatureElement.innerHTML = `${temperature}`;
+//}
+
+//let fahrenheitLink = document.querySelector("#fahrenheit-link");
+//fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+//let celsiusLink = document.querySelector("#celsius-link");
+//celsiusLink.addEventListener("click", convertToCelsius);
