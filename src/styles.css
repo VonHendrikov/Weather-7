@@ -37,6 +37,11 @@ body {
   line-height: 28px;
 }
 
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.897);
+}
+
 h2,
 h3,
 h4 {
@@ -100,4 +105,22 @@ form {
   margin: 0 auto;
   font-size: 10px;
   border: solid 1px #548ca8;
+}
+
+.weather-temperature .units {
+  position: relative;
+  font-size: 16px;
+  top: -34px;
+}
+.weather-temperature .active {
+  color: orangered;
+  cursor: default;
+  text-decoration: none;
+}
+
+strong {
+  color: rgb(33, 33, 33);
+  font-size: 64px;
+  line-height: 1;
+  font-weight: 400;
 }
