@@ -1,3 +1,4 @@
+//TIME AND DATE FORMATTING
 function formatDate(date) {
   let hours = date.getHours();
   if (hours < 10) {
@@ -23,28 +24,26 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function search(event) {
-  event.preventDefault();
-  let cityElement = document.querySelector("#city");
-  let cityInput = document.querySelector("#city-input");
-  cityElement.innerHTML = cityInput.value;
+let dateElement = document.querySelector("#Date");
+let currentTime = new Date();
+dateElement.innerHTML = formatDate(currentTime);
 
-  searchCity(cityInput.value);
-}
-searchCity("Glasgow");
-
-function searchCity(city) {
+//SEARCHBAR AND CURRENT POSITION
+function search(city) {
   let apiKey = "16fe8924e5a075000ef90dc44bff1cd0";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric`;
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
 }
 
-let dateElement = document.querySelector("#Date");
-let currentTime = new Date();
-dateElement.innerHTML = formatDate(currentTime);
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+search("Glasgow");
 
-//let searchForm = document.querySelector("#search-form");
-//searchForm.addEventListener("submit", search);
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
 
 //geolocator current location
 //function showPosition(position) {
@@ -60,6 +59,7 @@ dateElement.innerHTML = formatDate(currentTime);
 //let button = document.querySelector("button");
 //button.addEventListener("click", getCurrentPosition);
 
+//CURRENT WEATHER ATTRIBUTES AND DESCRIPTORS
 function showTemperature(response) {
   console.log(response.data);
 
